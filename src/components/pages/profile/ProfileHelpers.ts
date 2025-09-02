@@ -29,12 +29,22 @@ export const calculatePercentage = (value: number, total: number) => {
 };
 
 // Helper function to get placement status styling
-export const getPlacementStatusStyle = (status: string) => {
+export const getPlacementStatusStyle = (status: string | any) => {
+  // Handle object case
+  if (typeof status === 'object' && status !== null) {
+    const statusString = status.placementStatus || (status.isRegistered ? 'Active' : 'Not Registered');
+    return getPlacementStatusStyle(statusString);
+  }
+  
+  // Handle string case
   switch (status) {
     case 'Placed':
       return 'bg-green-100 text-green-800';
     case 'Active':
+    case 'In Progress':
       return 'bg-blue-100 text-blue-800';
+    case 'Not Registered':
+      return 'bg-gray-100 text-gray-800';
     default:
       return 'bg-orange-100 text-orange-800';
   }

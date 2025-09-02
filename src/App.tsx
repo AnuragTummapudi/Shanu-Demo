@@ -59,9 +59,7 @@ function DashboardWithNavigation({
   return (
     <NavigationProvider>
       <div className="min-h-screen bg-background">
-        <NavigatedPage userRole={user.role}>
-          {renderDashboard()}
-        </NavigatedPage>
+        {renderDashboard()}
       </div>
     </NavigationProvider>
   );

@@ -184,7 +184,9 @@ export const EnhancedStudentProfilePage: React.FC<EnhancedStudentProfilePageProp
                     </Badge>
                     <Badge className={`px-3 py-1 ${getPlacementStatusStyle(safeStudent.placementStatus)}`}>
                       <Activity className="w-3 h-3 mr-1" />
-                      {safeStudent.placementStatus}
+                      {typeof safeStudent.placementStatus === 'string' 
+                        ? safeStudent.placementStatus 
+                        : safeStudent.placementStatus?.placementStatus || 'Active'}
                     </Badge>
                   </div>
                   
@@ -325,7 +327,7 @@ export const EnhancedStudentProfilePage: React.FC<EnhancedStudentProfilePageProp
 
           <AnimatePresence mode="wait">
             {/* Overview Tab */}
-            <TabsContent value="overview" className="space-y-6">
+            <TabsContent key="overview" value="overview" className="space-y-6">
               <motion.div
                 key="overview-content"
                 initial={{ opacity: 0, y: 20 }}
@@ -457,7 +459,7 @@ export const EnhancedStudentProfilePage: React.FC<EnhancedStudentProfilePageProp
             </TabsContent>
 
             {/* Skills Tab */}
-            <TabsContent value="skills" className="space-y-6">
+            <TabsContent key="skills" value="skills" className="space-y-6">
               <motion.div
                 key="skills-content"
                 initial={{ opacity: 0, y: 20 }}
@@ -509,7 +511,7 @@ export const EnhancedStudentProfilePage: React.FC<EnhancedStudentProfilePageProp
             </TabsContent>
 
             {/* Achievements Tab */}
-            <TabsContent value="achievements" className="space-y-6">
+            <TabsContent key="achievements" value="achievements" className="space-y-6">
               <motion.div
                 key="achievements-content"
                 initial={{ opacity: 0, y: 20 }}
@@ -543,7 +545,7 @@ export const EnhancedStudentProfilePage: React.FC<EnhancedStudentProfilePageProp
             </TabsContent>
 
             {/* Experience Tab */}
-            <TabsContent value="experience" className="space-y-6">
+            <TabsContent key="experience" value="experience" className="space-y-6">
               <motion.div
                 key="experience-content"
                 initial={{ opacity: 0, y: 20 }}
@@ -585,7 +587,7 @@ export const EnhancedStudentProfilePage: React.FC<EnhancedStudentProfilePageProp
             </TabsContent>
 
             {/* Career Tab */}
-            <TabsContent value="career" className="space-y-6">
+            <TabsContent key="career" value="career" className="space-y-6">
               <motion.div
                 key="career-content"
                 initial={{ opacity: 0, y: 20 }}
@@ -642,7 +644,7 @@ export const EnhancedStudentProfilePage: React.FC<EnhancedStudentProfilePageProp
             </TabsContent>
 
             {/* Academic Tab */}
-            <TabsContent value="academic" className="space-y-6">
+            <TabsContent key="academic" value="academic" className="space-y-6">
               <motion.div
                 key="academic-content"
                 initial={{ opacity: 0, y: 20 }}
@@ -681,7 +683,7 @@ export const EnhancedStudentProfilePage: React.FC<EnhancedStudentProfilePageProp
             </TabsContent>
 
             {/* Resume Tab */}
-            <TabsContent value="resume" className="space-y-6">
+            <TabsContent key="resume" value="resume" className="space-y-6">
               <motion.div
                 key="resume-content"
                 initial={{ opacity: 0, y: 20 }}

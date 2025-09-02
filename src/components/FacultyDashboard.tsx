@@ -338,7 +338,7 @@ const FacultyDashboard: React.FC<FacultyDashboardProps> = ({ user, onLogout }) =
       <UserProfileCard 
         user={user}
         profileData={facultyProfile}
-        onViewProfile={() => navigateTo('enhanced-faculty-profile', facultyProfile, 'My Profile')}
+        onViewProfile={() => navigateTo('faculty-profile', facultyProfile, 'My Profile')}
       />
 
       {/* Key Statistics */}
@@ -839,7 +839,7 @@ const FacultyDashboard: React.FC<FacultyDashboardProps> = ({ user, onLogout }) =
             <Settings className="w-4 h-4 mr-2" />
             Edit Profile
           </Button>
-          <Button onClick={() => navigateTo('enhanced-faculty-profile', facultyProfile, 'View Full Profile')}>
+          <Button onClick={() => navigateTo('faculty-profile', facultyProfile, 'View Full Profile')}>
             <User className="w-4 h-4 mr-2" />
             View Full Profile
           </Button>

@@ -19,6 +19,32 @@ export const useNavigation = () => {
   return context;
 };
 
+// Safe navigation hook that doesn't throw when used outside context
+export const useSafeNavigation = () => {
+  const context = useContext(NavigationContext);
+  if (!context) {
+    // Return a no-op navigation object when used outside context
+    return {
+      navigationState: {
+        currentPage: 'dashboard' as PageType,
+        currentData: null,
+        currentTitle: 'Dashboard',
+        breadcrumbs: []
+      },
+      navigateTo: () => {
+        console.warn('Navigation not available - component rendered outside NavigationProvider');
+      },
+      goBack: () => {
+        console.warn('Navigation not available - component rendered outside NavigationProvider');
+      },
+      addBreadcrumb: () => {
+        console.warn('Navigation not available - component rendered outside NavigationProvider');
+      }
+    };
+  }
+  return context;
+};
+
 export const NavigationProvider: React.FC<NavigationProviderProps> = ({ children }) => {
   const [navigationState, setNavigationState] = useState<NavigationState>({
     currentPage: 'dashboard',

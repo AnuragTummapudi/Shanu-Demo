@@ -34,6 +34,8 @@ import {
   Shield
 } from 'lucide-react';
 import { generateSafeReportData, generateQuickStats, getKeyMetrics, enhancedSuperAdminProfile } from './data/superAdminData';
+import { exportStudentsData, exportApplicationsData, exportFacultyData, exportOperationsData, exportBudgetData } from './utils/enhancedCsvExport';
+import { toast } from 'sonner';
 
 interface SuperAdminDashboardProps {
   user: {
@@ -73,6 +75,47 @@ const SuperAdminDashboard: React.FC<SuperAdminDashboardProps> = ({ user, onLogou
     averageCTC: reportData.summary.averageCTC,
     totalApplications: reportData.summary.totalApplications,
     activePlacements: reportData.summary.activePlacements
+  };
+
+  // Export functions
+  const handleExportStudents = async () => {
+    try {
+      await exportStudentsData(user.role);
+    } catch (error) {
+      toast.error('Failed to export students data');
+    }
+  };
+
+  const handleExportApplications = async () => {
+    try {
+      await exportApplicationsData(user.role);
+    } catch (error) {
+      toast.error('Failed to export applications data');
+    }
+  };
+
+  const handleExportFaculty = async () => {
+    try {
+      await exportFacultyData(user.role);
+    } catch (error) {
+      toast.error('Failed to export faculty data');
+    }
+  };
+
+  const handleExportOperations = async () => {
+    try {
+      await exportOperationsData(user.role);
+    } catch (error) {
+      toast.error('Failed to export operations data');
+    }
+  };
+
+  const handleExportBudget = async () => {
+    try {
+      await exportBudgetData(user.role);
+    } catch (error) {
+      toast.error('Failed to export budget data');
+    }
   };
 
   // Real-time System Health Hook
@@ -696,6 +739,18 @@ const SuperAdminDashboard: React.FC<SuperAdminDashboardProps> = ({ user, onLogou
           <Button variant="outline" onClick={() => navigateTo('system-monitoring', null, 'System Monitor')}>
             <Activity className="w-4 h-4 mr-2" />
             System Health
+          </Button>
+          <Button variant="outline" onClick={handleExportStudents}>
+            <Download className="w-4 h-4 mr-2" />
+            Export Students
+          </Button>
+          <Button variant="outline" onClick={handleExportApplications}>
+            <Download className="w-4 h-4 mr-2" />
+            Export Applications
+          </Button>
+          <Button variant="outline" onClick={handleExportBudget}>
+            <Download className="w-4 h-4 mr-2" />
+            Export Budget
           </Button>
         </div>
       </div>
