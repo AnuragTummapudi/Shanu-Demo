@@ -23,7 +23,7 @@ import {
   Download,
   RefreshCw,
   Eye,
-  PieChart,
+  PieChart as PieChartIcon,
   LineChart as LineChartIcon,
   BarChart as BarChartIcon
 } from 'lucide-react';
@@ -224,7 +224,7 @@ const PlacementAnalytics: React.FC = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <PieChart className="w-5 h-5 text-primary" />
+              <PieChartIcon className="w-5 h-5 text-primary" />
               <span>Package Distribution</span>
             </CardTitle>
           </CardHeader>
